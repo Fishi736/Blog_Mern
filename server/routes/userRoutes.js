@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/authMiddleWare')
 
 
 
-const { registerUser, loginUser, getUser, changeUserAvatar, editUserDetails
+const { registerUser, loginUser, getUser,getAuthors, changeUserAvatar, editUserDetails
 } = require('../controllers/userController')
 
 
@@ -14,6 +14,7 @@ const { registerUser, loginUser, getUser, changeUserAvatar, editUserDetails
 
 router.post('/register', registerUser)
 router.post('/login', loginUser)
+router.get('/', getAuthors)
 router.get('/:id', getUser)
 router.post('/change-avatar', authMiddleware,changeUserAvatar)
 router.patch('/edit-details',authMiddleware, editUserDetails)

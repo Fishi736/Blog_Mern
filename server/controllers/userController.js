@@ -88,7 +88,7 @@ const loginUser = async (req, res, next) => {
 
 
 
-//POST : api/users/:id
+//GET : api/users/:id
 //PROTECTED
 const getUser = async (req, res, next) => {
     try {
@@ -97,6 +97,19 @@ const getUser = async (req, res, next) => {
         if (!user) {
             return next(new HttpError('User Not Found'))
         }
+        res.status(200).json(user)
+    } catch (error) {
+        return next(new HttpError(error))
+
+    }
+}
+
+//GET : api/users
+//PROTECTED
+const getAuthors = async (req, res, next) => {
+    try {
+        const user = await User.find().select('-password').sort({ updatedAt: -1 });
+        console.log(user)
         res.status(200).json(user)
     } catch (error) {
         return next(new HttpError(error))
@@ -190,5 +203,5 @@ const editUserDetails = async (req, res, next) => {
 
 
 module.exports = {
-    registerUser, loginUser, getUser, changeUserAvatar, editUserDetails
+    registerUser, loginUser, getUser, getAuthors, changeUserAvatar, editUserDetails
 }

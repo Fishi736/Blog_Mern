@@ -9,7 +9,7 @@ const AuthorDetails = () => {
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { currentUser } = useContext(UserContext);
-  const id = currentUser?.id;
+  // let current_id = currentUser?.id;
   const token = currentUser?.token;
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
@@ -18,6 +18,7 @@ const AuthorDetails = () => {
   const [mobile, setMobile] = useState("");
   const [country, setCountry] = useState("");
   const [interest, setInterest] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -33,13 +34,9 @@ const AuthorDetails = () => {
       setIsLoading(false);
     };
 
-    fetchBlogs();
-  }, []);
-
-  useEffect(() => {
     const getUser = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/users/${currentUser?.id}`,
+        `${process.env.REACT_APP_BASE_URL}/users/${id}`,
         { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
       );
       const { name, email, avatar, about, interest, country, mobile } =
@@ -53,22 +50,26 @@ const AuthorDetails = () => {
       setMobile(mobile);
     };
     getUser();
+    fetchBlogs();
   }, []);
 
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <>
       <div className="container py-5">
         <div className="row">
           <div className="col-md-8 order-2">
-            <Link
-              className=" link mt-3 ms-auto badge fs-6 fw-normal rounded-pill bg-light text-dark "
-              to="/create"
-            >
-              + Create New
-            </Link>
+            {currentUser?.id == id && (
+              <Link
+                className=" link mt-3 ms-auto badge fs-6 fw-normal rounded-pill bg-light text-dark "
+                to="/create"
+              >
+                + Create New
+              </Link>
+            )}
             {list.length > 0 ? (
               <>
                 {list.map(
@@ -100,7 +101,10 @@ const AuthorDetails = () => {
           </div>
 
           <div className="col-lg-4 border-end order-1">
-            <div className="userDetails px-lg-5 px-3 position-sticky" style={{top:'2rem'}}>
+            <div
+              className="userDetails px-lg-5 px-3 position-sticky"
+              style={{ top: "2rem" }}
+            >
               <div className=" d-flex justify-content-between">
                 <div className=" profile-pic w-50 rounded-circle mt-5 mb-4 ">
                   <img
@@ -110,12 +114,14 @@ const AuthorDetails = () => {
                   />
                 </div>
                 <div>
-                  <Link
-                    className=" link mt-3 ms-auto badge fs-6 fw-normal rounded-pill bg-light text-dark "
-                    to={`/profile/${currentUser.id}`}
-                  >
-                    Edit
-                  </Link>
+                  {currentUser?.id == id && (
+                    <Link
+                      className=" link mt-3 ms-auto badge fs-6 fw-normal rounded-pill bg-light text-dark "
+                      to={`/profile/${currentUser.id}`}
+                    >
+                      Edit
+                    </Link>
+                  )}
                 </div>
               </div>
 
@@ -126,7 +132,6 @@ const AuthorDetails = () => {
               <span className="badge rounded-pill bg-light text-dark me-3">
                 {interest}
               </span>
-             
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ const Home = () => {
       <main>
         <div className="position-relative overflow-hidden p-3 p-md-5  text-center bg-light">
           <div className="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 className="display-3 text-dark fw-bold mb-3">Punny headline</h1>
+            <h1 className="display-3 text-dark fw-bold mb-3">Express Out</h1>
             <p className="lead fw-normal text-black-50 mb-4">
               And an even wittier subheading to boot. Jumpstart your marketing
               efforts with this example based on Apple’s marketing pages.

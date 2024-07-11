@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BlogsWidget from "./BlogsWidget";
 import Loader from "../components/Loader";
 import axios from "axios";
+import Search from "../components/Search";
 
 const BlogList = () => {
   const [list, setList] = useState([]);
@@ -32,6 +33,7 @@ const BlogList = () => {
     <>
       <div className="container py-5">
        
+       <Search/>
 
         <div className="row g-5">
           <div className="col-md-8">

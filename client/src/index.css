@@ -49,6 +49,16 @@ textarea::placeholder {
   color: #8e8e8e;
 }
 
+.search-icon{
+  height: 1.5rem;
+  width: 1.5rem;
+  position: absolute;
+  box-sizing:border-box;
+  left: 95%;
+  top: 15px;
+  color: #8e8e8e;
+}
+
 .form-control {
   display: block;
   width: 100%;
@@ -238,6 +248,39 @@ textarea::placeholder {
   cursor: pointer;
   font-weight: normal;
   transition: all 0.2s ease-in-out;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 40%, #000000 100%);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.content > div > .name {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 500;
+  display: block;
+}
+
+.content > div > .email {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.blogCount {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 400;
+  padding: 2px 10px;
+  border-left: 1px solid #f1f1f1;
 }
 
 @media (min-width: 768px) {

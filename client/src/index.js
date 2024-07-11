@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import Create from './pages/Create';
 import BlogList from './pages/BlogList'
 import AuthorDetails from './pages/AuthorDetails';
+import AuthorList from './pages/AuthorList';
 import EditProfile from './pages/EditProfile';
 import UserProvider from './context/userContext';
 
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "create", element: <Create /> },
       { path: "blogs", element: <BlogList /> },
+      { path: "authors", element: <AuthorList /> },
       { path: "author/:id", element: <AuthorDetails /> },
       { path: "profile/:id", element: <EditProfile /> },
       { path: "edit/:id", element: <Create /> },

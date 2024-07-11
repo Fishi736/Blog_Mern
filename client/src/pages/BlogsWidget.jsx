@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext} from "react";
+import { Link ,useParams } from "react-router-dom";
 import Author from "./Author";
+import { UserContext } from "../context/userContext";
 
 const BlogsWidget = ({
   blogid,
@@ -11,6 +12,9 @@ const BlogsWidget = ({
   description,
   createdAt,
 }) => {
+  const { currentUser } = useContext(UserContext);
+  const { id } = useParams();
+
   const shortDescription =
     description.length > 145
       ? description.substring(0, 145) + "..."
@@ -32,16 +36,18 @@ const BlogsWidget = ({
           </div>
           <div className="col-lg-9 ">
             <h5 className="mt-3">{shortTitle}</h5>
-            <p dangerouslySetInnerHTML={{ __html: shortDescription}}></p>
+            <p dangerouslySetInnerHTML={{ __html: shortDescription }}></p>
           </div>
         </Link>
 
-        <Author
-          className="ms-auto"
-          authorId={authorId}
-          createdAt={createdAt}
-          category={category}
-        />
+        {currentUser?.id == id && (
+          <Author
+            className="ms-auto"
+            authorId={authorId}
+            createdAt={createdAt}
+            category={category}
+          />
+        )}
       </div>
     </>
   );
