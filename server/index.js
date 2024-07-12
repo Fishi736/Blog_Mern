@@ -8,9 +8,9 @@ const { connect } = require('mongoose')
 const upload = require('express-fileupload')
 
 const corsOptions = {
-    origin: 'https://geeks-blog.onrender.com',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: '*',
+    methods: 'GET, POST, PUT, PATCH, DELETE',
+    allowedHeaders: '*',
     credentials: true
 };
 
