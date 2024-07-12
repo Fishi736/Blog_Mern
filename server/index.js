@@ -10,7 +10,7 @@ const upload = require('express-fileupload')
 const corsOptions = {
     origin: '*',
     methods: 'GET, POST, PUT, PATCH, DELETE',
-    allowedHeaders: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
 
